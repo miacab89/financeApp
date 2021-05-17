@@ -6,7 +6,7 @@ function Graph({labels}) {
         <div>
             <Line 
             data={{
-                labels: ['May 13, 2021'],
+                labels: ['May 13, 2021', 'May 14, 2021', 'May 15, 2021', 'May 16, 2021', 'May 17, 2021'],
                 datasets: [{ 
                     label: 'Stock Price',
                     data: [141.45, 144.17, 141.45, 144.17, 141.45, 144.17, 141.45],
@@ -15,6 +15,7 @@ function Graph({labels}) {
                     tension: 0.2
                 }]
             }}
+            
             labels={labels}
             width={300}
 	        height={400}
