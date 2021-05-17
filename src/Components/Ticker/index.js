@@ -2,9 +2,9 @@ import React, {useState} from 'react'
 import { Row, Container, Table} from 'react-bootstrap';
 
 
-function Ticker({companyName, open, low, high, adjustedClose, volume, divAmount}) {
+function Ticker() {
 
-    const [data, setData] = useState({
+    const [data] = useState({
         metaData: {
               date: "5/13/2021",
               company: "IBM",
@@ -17,6 +17,7 @@ function Ticker({companyName, open, low, high, adjustedClose, volume, divAmount}
               divAmount: "0.0000"
             }
     });
+
 
     return(
         <div className="ticker">
@@ -35,6 +36,18 @@ function Ticker({companyName, open, low, high, adjustedClose, volume, divAmount}
                     <th>Dividend Amount</th>
                     </tr>
                 </thead>
+                <tbody>
+                    <tr>
+                    <td>{data.metaData.date}</td>
+                    <td>{data.metaData.open}</td>
+                    <td>{data.metaData.close}</td>
+                    <td>{data.metaData.open}</td>
+                    <td>{data.metaData.close}</td>
+                    <td>{data.metaData.open}</td>
+                    <td>{data.metaData.close}</td>
+                    <td>{data.metaData.open}</td>
+                    </tr>
+                </tbody>
                 <tbody>
                     <tr>
                     <td>{data.metaData.date}</td>
