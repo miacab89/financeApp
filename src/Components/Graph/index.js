@@ -15,13 +15,18 @@ function Graph({labels}) {
                     tension: 0.2
                 }]
             }}
-            
+            scales={{
+                scales: {
+                    stacked: true 
+                }
+            }}
             labels={labels}
             width={300}
 	        height={400}
 	        options={{
                 maintainAspectRatio: false
             }}
+            
             />
         </div>
     )

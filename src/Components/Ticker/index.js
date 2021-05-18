@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { Row, Container, Table} from 'react-bootstrap';
+import './style.css';
 
 
 function Ticker() {
@@ -23,6 +24,7 @@ function Ticker() {
         <div className="ticker">
         <Container>
             <Row>
+                <h1 className="company-name">{data.metaData.company}</h1>
                 <Table striped bordered hover size="sm">
                 <thead>
                     <tr>
