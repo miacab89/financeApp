@@ -22,7 +22,7 @@ function Ticker() {
 
     return(
         <div className="ticker">
-        <Container>
+        <Container fluid>
             <Row>
                 <h1 className="company-name">{data.metaData.company}</h1>
                 <Table striped bordered hover size="sm">

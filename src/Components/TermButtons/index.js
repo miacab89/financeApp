@@ -1,16 +1,24 @@
-import React from 'react';
-import {Button} from 'react-bootstrap';
+import React, { useRef } from 'react';
+import { Button } from 'react-bootstrap';
 import './style.css'; 
 
-function termButtons() {
+function TermButtons() {
+
+  const inputEl = useRef(null);
+  const onButtonClick = () => {
     
+    // `current` points to the mounted text input element
+
+
+    inputEl.current.focus();
+  }; 
     return(
         <div className="buttons">
-            <Button variant="outline-info" className="bull-btn">Bullish</Button>
-            <Button variant="outline-info" className="bear-btn">Bearish</Button>
+            <Button onClick={onButtonClick} variant="outline-primary" className="bull-btn">Bullish</Button>
+            <Button onClick={onButtonClick} variant="outline-secondary" className="bear-btn">Bearish</Button>
         </div>
     )
 }
 
-export default termButtons; 
+export default TermButtons; 
 

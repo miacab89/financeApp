@@ -1,7 +1,7 @@
 import React from 'react';
 import Ticker from './Components/Ticker/index.js';
 import Graph from './Components/Graph/index.js';
-import TermButtons from './Components/TermButtons/index.js';
+import TermButtons from './Components/TermButtons/index.js'
 import Trident from './trident.png';
 import './App.css'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
