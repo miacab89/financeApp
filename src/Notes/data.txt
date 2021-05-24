@@ -1,0 +1,10 @@
+Data We'd like to store --
+
+1. Store the trade amount
+2. Store data if user making bullish or bearish bet
+3. Store user's position
+4. Store equity/quantity
+
+{
+    "amount": "123"
+}

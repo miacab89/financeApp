@@ -4,16 +4,17 @@ import { Line } from 'react-chartjs-2';
 
 function Graph({labels}) {
 
-    // [141.45, 144.17, 141.45, 144.17, 141.45, 144.17, 141.45]
-    
+
     const BEARISH_CFG = [{ x: 'May 13', open: '141.32'}]
     const BULLISH_CFG = [{ x: 'MAY 13', close: '132.23'}];
+
+
 
     return(
         <div>
             <Line 
             data={{
-                labels: ['May 13, 2021', 'May 14, 2021', 'May 15, 2021', 'May 16, 2021', 'May 17, 2021'],
+                labels: ['May 13, 2021', 'May 14, 2021', 'May 15. 2021', 'May 16, 2021', 'May 17, 2021'],
                 datasets: [{ 
                     label: 'Stock Price',
                     data: [141.45, 144.17, 141.45, 144.17, 141.45, 144.17, 141.45],

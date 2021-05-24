@@ -2,7 +2,12 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const app = express(); 
-const PORT = 3000; 
+const PORT = 4000; 
+const dayjs = require('dayjs')
+const now = dayjs()
+dayjs(now).format('MM-DD-YYYY')
+console.log(dayjs)
+
 
 // Middleware
 app.use(cors()); 
@@ -12,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-    res.send(); 
+    res.send(now); 
 })
 
 app.listen(PORT, () => {
