@@ -1,6 +1,6 @@
 import React, {useState} from 'react'; 
 import {Modal, Button} from 'react-bootstrap';
-import axios from 'axios'
+import axios from 'axios';
 
 
 function BidModal() {
@@ -31,7 +31,7 @@ function BidModal() {
             bid: input.bid 
         }
         
-        axios.post('http://localhost:4000/bid', newBid)
+        axios.post('http://localhost:3001/bid', newBid)
     }
   
     return (
