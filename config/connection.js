@@ -1,21 +1,26 @@
-const MongoClient = require('mongodb').MongoClient;
-const mongoURI = 'mongodb+srv://MiaLou89:M1lfordx!@cluster1.uqr4r.gcp.mongodb.net/trident?retryWrites=true&w=majority';
+const path = require('path'); 
+const mongoose = require('mongoose'); 
+const mongoURI = process.env.MONGO_URI;
 
+// Connected to Cluster Atlas MongoDB
 
-const client = new MongoClient(mongoURI, {
+require("dotenv").config({ path: path.resolve(__dirname, './.env') });
+
+module.exports = async () => {
+await mongoose
+  .connect(mongoURI, {
+    useCreateIndex: true,
+    useNewUrlParser: true,
     useUnifiedTopology: true,
-    useNewUrlParser: true
-})
-
-async function run() {
-    try {
-        await client.connect();
-        console.log("Connected correctly to server");
-    } catch (err) {
-        console.log(err.stack);
-    }
-    finally {
-        await client.close();
-    }
+    useFindAndModify: false
+  })
+  .then(x => {
+    console.log(
+      `Connected to Mongo! Database name: "${x.connections[0].name}"`
+    );
+  })
+  .catch(err => {
+    console.error("Error connecting to mongo", err);
+  });
+  return mongoose; 
 }
-run().catch(console.dir);
