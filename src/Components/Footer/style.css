@@ -7,3 +7,15 @@
     color: white;
     text-align: center;
   }
+
+.positions-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+.bids-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }

@@ -1,25 +1,45 @@
 import React, {useState} from 'react';
-import {Collapse, Button} from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChess } from '@fortawesome/free-solid-svg-icons';
+import './style.css';
+
+
 
 const Positions = () => {
-    const [open, setOpen] = useState(false);
+
+const [show, setShow] = useState(false);
+const handleClose = () => setShow(false);
+const handleShow = () => setShow(true);
 
     return(
         <div>
-            <Button
-                onClick={() => setOpen(!open)}
-                aria-controls="example-collapse-text"
-                aria-expanded={open}
-      >Your Positions
-      </Button>
-      <Collapse in={open}>
-        <div id="example-collapse-text">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-          terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-          labore wes anderson cred nesciunt sapiente ea proident.
-        </div>
-      </Collapse>
-        </div>
+    <Button 
+        onClick={handleShow}
+        aria-controls="example-collapse-text"
+        aria-expanded={handleShow}
+        variant="outline-light"
+    ><FontAwesomeIcon icon={faChess} />  Your Positions
+      
+    </Button>
+    <Modal
+          show={show}
+          onHide={handleClose}
+          backdrop="static"
+          keyboard={false}
+        >
+        <Modal.Header>
+            <Modal.Title><FontAwesomeIcon icon={faChess} />Your Positions</Modal.Title>
+        </Modal.Header>
+          <Modal.Body>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+          </Modal.Footer>
+    </Modal>
+    </div>
     )
 }
 

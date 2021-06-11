@@ -1,15 +1,16 @@
-import React, {useState} from 'react'; 
-import {Modal, Button} from 'react-bootstrap';
+import React, { useState } from 'react'; 
+import { Modal, Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoins } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
 
 function BidModal() {
-    const [show, setShow] = useState(false);
-  
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
-    const [input, setInput] = useState({
+  const [input, setInput] = useState({
         bid: ''
     });
 
@@ -36,8 +37,8 @@ function BidModal() {
   
     return (
       <>
-        <Button variant="primary" onClick={handleShow}>
-          Place Bid
+        <Button variant="outline-light" onClick={handleShow}><FontAwesomeIcon icon={faCoins} />
+         Place Bid
         </Button>
   
         <Modal
