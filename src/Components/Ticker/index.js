@@ -5,18 +5,27 @@ import './style.css';
 
 function Ticker() {
 
-    const [data] = useState({
-        metaData: {
-              date: "5/13/2021",
-              company: "IBM",
-              open: "141.45",
-              high: "144.9",
-              low: "141.28",
-              close: "144.17",
-              adjClose: "144.17",
-              volume: "4598920",
-              divAmount: "0.0000"
-            }
+const api = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=IBM&apikey=ALPHA_VANTAGE_API_KEY';
+
+(async () => {
+    const stockData = await fetch(`${api}`)
+        .then(response => response.json());
+        console.log(stockData); 
+})();
+
+
+const [data] = useState({
+    metaData: {
+        date: "5/13/2021",
+        company: "IBM",
+        open: "141.45",
+        high: "144.9",
+        low: "141.28",
+        close: "144.17",
+        adjClose: "144.17",
+        volume: "4598920",
+        divAmount: "0.0000"
+        }
     });
 
 
