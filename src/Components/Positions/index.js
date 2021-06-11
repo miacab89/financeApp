@@ -28,7 +28,7 @@ const handleShow = () => setShow(true);
           backdrop="static"
           keyboard={false}
         >
-        <Modal.Header>
+        <Modal.Header style={{background: "#808183", color: "white"}}>
             <Modal.Title><FontAwesomeIcon icon={faChess} />Your Positions</Modal.Title>
         </Modal.Header>
           <Modal.Body>

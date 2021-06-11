@@ -47,8 +47,8 @@ function BidModal() {
           backdrop="static"
           keyboard={false}
         >
-          <Modal.Header>
-            <Modal.Title>Create Bid</Modal.Title>
+          <Modal.Header style={{background: "#808183", color: "white"}}>
+            <Modal.Title><FontAwesomeIcon icon={faCoins} />Place Bid</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <input onChange={handleChange} value={input.bid} name="bid" autoComplete="off" className="form-control" placeholder="$" />

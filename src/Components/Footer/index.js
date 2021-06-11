@@ -10,9 +10,12 @@ const Footer = () => {
                 <div className="positions-btn">
                     <Positions />
                 </div>
+                <br></br>
                 <div className="bids-btn">
                     <Bids />
                 </div>
+                <br></br>
+                <br></br>
                 <div className="trademark">
                     <h1>Trident Financials, LLC &trade;</h1>
                 </div>

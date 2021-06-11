@@ -9,13 +9,15 @@
   }
 
 .positions-btn {
-    position: absolute;
-    top: 0;
+    position: relative;
+    top: 8;
     left: 0;
+    right: -2;
   }
 
 .bids-btn {
-    position: absolute;
-    top: 0;
+    position: relative;
+    top: 8;
     right: 0;
+    left: 0;
   }
