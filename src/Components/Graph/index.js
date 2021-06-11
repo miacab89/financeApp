@@ -1,20 +1,27 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 
-
 function Graph({labels}) {
 
+let curr = new Date(); 
+let week = []
 
-    const BEARISH_CFG = [{ x: 'May 13', open: '141.32'}]
-    const BULLISH_CFG = [{ x: 'MAY 13', close: '132.23'}];
+    for (let i = 1; i <= 7; i++) {
+        let first = curr.getDate() - curr.getDay() + i 
+        let day = new Date(curr.setDate(first)).toISOString().slice(0, 10)
+        week.push(day)
+        console.log(week); 
+    }
 
+const BEARISH_CFG = [{ x: 'May 13', open: '141.32'}]
+const BULLISH_CFG = [{ x: 'MAY 13', close: '132.23'}];
 
 
     return(
         <div>
             <Line 
             data={{
-                labels: ['May 13, 2021', 'May 14, 2021', 'May 15. 2021', 'May 16, 2021', 'May 17, 2021'],
+                labels: week,
                 datasets: [{ 
                     label: 'Stock Price',
                     data: [141.45, 144.17, 141.45, 144.17, 141.45, 144.17, 141.45],

@@ -1,6 +1,6 @@
 const path = require('path'); 
 const mongoose = require('mongoose'); 
-const mongoURI = process.env.MONGO_URI;
+
 
 // Connected to Cluster Atlas MongoDB
 
@@ -8,11 +8,11 @@ require("dotenv").config({ path: path.resolve(__dirname, './.env') });
 
 module.exports = async () => {
 await mongoose
-  .connect(mongoURI, {
+  .connect(process.env.MONGO_URI, {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useFindAndModify: false
+    useFindAndModify: true
   })
   .then(x => {
     console.log(

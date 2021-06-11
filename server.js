@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-app.use("/routes", require("./routes/bidRoutes"));
+app.use("/", require("./routes/bidRoutes"));
 app.use("/connection", require("./config/connection")); 
 
 app.listen(PORT, () => {
