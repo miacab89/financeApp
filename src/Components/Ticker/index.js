@@ -1,21 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Container} from 'react-bootstrap'; 
+// import { TickerModel } from '../utils/tickerModel'; 
 import './style.css';
 
 
 function Ticker() {
 
 const [stocks, setStocks] = useState([]);
-const [data, setData] = useState({
-metaData: {
-   date: {
-        open: [],
-        close: [],
-        high: [],
-        low: [], 
-        volume: []
-   }}
-});
+const [data, setData] = useState([]);
 
 const api = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=IBM&apikey=demo';
 
@@ -24,18 +16,21 @@ const getData = async() => {
         .then(response => response.json())
         console.log(stockData);
         setStocks(stockData)
-    };
+
+    let intraday = data.push(stocks);
+    console.log(intraday)
+
+    for (const daily of Object.keys(intraday)) {
+        setData(daily)
+        console.log(daily); 
+    }
+    return setData; 
+};
 
 useEffect(() => {
-    let series = true;
-    getData() 
-    .then(daily => {
-        if(series) {
-        setData(daily)
-        }
-    }); 
-    return() => series = false; 
-}, []); 
+    getData()
+}); 
+
 
 
 return(
@@ -47,10 +42,7 @@ return(
                 </h1>
                 <div className="stock-data">
                     <div>
-                       {/* {JSON.stringify(stocks)} */}
-                       <ul>
-                       {stocks.set(daily => <li key={daily.stocks}>{stocks}</li>)}
-                       </ul>
+                       {JSON.stringify(stocks)}
                     </div>
                 </div>
                 {/* <Table striped bordered hover size="sm">

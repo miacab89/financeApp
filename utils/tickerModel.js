@@ -1,5 +1,6 @@
 class Ticker {
-    constructor(open, close, high, low, volume) {
+    constructor(symbol, open, close, high, low, volume) {
+        this.symbol = symbol; 
         this.open = open;
         this.close = close;
         this.high = high;
@@ -7,5 +8,6 @@ class Ticker {
         this.volume = volume; 
     }
 }
+
 
 export default Ticker; 
