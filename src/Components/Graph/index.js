@@ -10,8 +10,7 @@ let week = []
         let first = curr.getDate() - curr.getDay() + i 
         let day = new Date(curr.setDate(first)).toISOString().slice(0, 10)
         week.push(day)
-        console.log(week); 
-    }
+    };
 
 const BEARISH_CFG = [{ x: 'May 13', open: '141.32'}]
 const BULLISH_CFG = [{ x: 'MAY 13', close: '132.23'}];

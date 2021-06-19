@@ -1,40 +1,59 @@
-import React, {useState} from 'react'
-import { Row, Container, Table} from 'react-bootstrap';
+import React, { useState, useEffect } from 'react'
+import { Row, Container} from 'react-bootstrap'; 
 import './style.css';
 
 
 function Ticker() {
 
-const api = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=IBM&apikey=ALPHA_VANTAGE_API_KEY';
+const [stocks, setStocks] = useState([]);
+const [data, setData] = useState({
+metaData: {
+   date: {
+        open: [],
+        close: [],
+        high: [],
+        low: [], 
+        volume: []
+   }}
+});
 
-(async () => {
+const api = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=IBM&apikey=demo';
+
+const getData = async() => {
     const stockData = await fetch(`${api}`)
-        .then(response => response.json());
-        console.log(stockData); 
-})();
+        .then(response => response.json())
+        console.log(stockData);
+        setStocks(stockData)
+    };
 
-
-const [data] = useState({
-    metaData: {
-        date: "5/13/2021",
-        company: "IBM",
-        open: "141.45",
-        high: "144.9",
-        low: "141.28",
-        close: "144.17",
-        adjClose: "144.17",
-        volume: "4598920",
-        divAmount: "0.0000"
+useEffect(() => {
+    let series = true;
+    getData() 
+    .then(daily => {
+        if(series) {
+        setData(daily)
         }
-    });
+    }); 
+    return() => series = false; 
+}, []); 
 
 
-    return(
+return(
         <div className="ticker">
         <Container fluid>
             <Row>
-                <h1 className="company-name">{data.metaData.company}</h1>
-                <Table striped bordered hover size="sm">
+                <h1 className="company-name">
+                    {/* {data.metaData.company} */}
+                </h1>
+                <div className="stock-data">
+                    <div>
+                       {/* {JSON.stringify(stocks)} */}
+                       <ul>
+                       {stocks.set(daily => <li key={daily.stocks}>{stocks}</li>)}
+                       </ul>
+                    </div>
+                </div>
+                {/* <Table striped bordered hover size="sm">
                 <thead>
                     <tr>
                     <th>Date</th>
@@ -46,8 +65,8 @@ const [data] = useState({
                     <th>Adjusted Close</th>
                     <th>Dividend Amount</th>
                     </tr>
-                </thead>
-                <tbody>
+                </thead> */}
+                {/* <tbody>
                     <tr>
                     <td>{data.metaData.date}</td>
                     <td>{data.metaData.open}</td>
@@ -70,12 +89,11 @@ const [data] = useState({
                     <td>{data.metaData.close}</td>
                     <td>{data.metaData.open}</td>
                     </tr>
-                </tbody>
-                </Table>
+                </tbody> */}
+                {/* </Table> */}
             </Row>
         </Container>
       </div>
-    
     )
 }
 

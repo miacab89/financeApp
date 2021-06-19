@@ -1,7 +1,6 @@
 import React from 'react';
 import Ticker from './Components/Ticker/index.js';
 import Graph from './Components/Graph/index.js';
-import TermButtons from './Components/TermButtons/index.js'
 import Trident from './trident.png';
 import Footer from './Components/Footer/index.js';
 import './App.css'; 
@@ -16,9 +15,6 @@ export default function App() {
       <div className="ticker-container">
         <Ticker />
       </div> 
-      <div className="buttons-container">
-        <TermButtons/>
-      </div>
       <div className="graph-contrainer">
         <Graph />
       </div>  
