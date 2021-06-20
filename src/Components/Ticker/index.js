@@ -1,36 +1,49 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Container} from 'react-bootstrap'; 
+import { Row, Container, Table} from 'react-bootstrap'; 
 // import { TickerModel } from '../utils/tickerModel'; 
 import './style.css';
 
 
 function Ticker() {
 
-const [stocks, setStocks] = useState([]);
 const [data, setData] = useState([]);
+const [stocks, setStocks] = useState({
+    metaData: {
+        symbol: "",
+        high: "",
+        low: "",
+        open: "",
+        close: "",
+        adjClose: ""
+    }
+});
 
 const api = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=IBM&apikey=demo';
 
 const getData = async() => {
     const stockData = await fetch(`${api}`)
-        .then(response => response.json())
-        console.log(stockData);
+        .then(res => res.json())
         setStocks(stockData)
+        console.log(stockData)
 
-    let intraday = data.push(stocks);
-    console.log(intraday)
+    let adj = data.push(stockData);
+    console.log(adj)
 
-    for (const daily of Object.keys(intraday)) {
+    for (let daily of Object.keys(adj)) {
         setData(daily)
-        console.log(daily); 
+        console.log(daily) 
+
+        for (let stock of Object.keys(daily)) {
+            setData(stock)
+            console.log(stock)
+        }
     }
-    return setData; 
+    return getData; 
 };
 
 useEffect(() => {
-    getData()
+    getData();
 }); 
-
 
 
 return(
@@ -38,55 +51,43 @@ return(
         <Container fluid>
             <Row>
                 <h1 className="company-name">
-                    {/* {data.metaData.company} */}
+                   {JSON.stringify(stocks)}
                 </h1>
                 <div className="stock-data">
-                    <div>
-                       {JSON.stringify(stocks)}
-                    </div>
+                    {/* {stocks.map((stock) => {
+                        return(
+                            <div>
+                                <li>{stock.data.metaData.open}</li>
+                            </div>
+                        )
+                    })} */}
                 </div>
-                {/* <Table striped bordered hover size="sm">
+                <Table striped bordered hover size="sm">
                 <thead>
                     <tr>
-                    <th>Date</th>
-                    <th>Open</th>
-                    <th>Close</th>
-                    <th>High</th>
-                    <th>Low</th>
+                        <th>Date</th>
+                        <th>Open</th>
+                        <th>Close</th>
+                        <th>High</th>
+                        <th>Low</th>
                     <th>Volume</th>
                     <th>Adjusted Close</th>
                     <th>Dividend Amount</th>
                     </tr>
-                </thead> */}
-                {/* <tbody>
+                </thead> 
+                <tbody>
                     <tr>
-                    <td>{data.metaData.date}</td>
-                    <td>{data.metaData.open}</td>
-                    <td>{data.metaData.close}</td>
-                    <td>{data.metaData.open}</td>
-                    <td>{data.metaData.close}</td>
-                    <td>{data.metaData.open}</td>
-                    <td>{data.metaData.close}</td>
-                    <td>{data.metaData.open}</td>
                     </tr>
                 </tbody>
                 <tbody>
                     <tr>
-                    <td>{data.metaData.date}</td>
-                    <td>{data.metaData.open}</td>
-                    <td>{data.metaData.close}</td>
-                    <td>{data.metaData.open}</td>
-                    <td>{data.metaData.close}</td>
-                    <td>{data.metaData.open}</td>
-                    <td>{data.metaData.close}</td>
-                    <td>{data.metaData.open}</td>
                     </tr>
-                </tbody> */}
-                {/* </Table> */}
+                </tbody>
+                </Table>
             </Row>
         </Container>
       </div>
     )
 }
 
-export default Ticker
+export default Ticker; 
