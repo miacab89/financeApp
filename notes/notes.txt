@@ -1,0 +1,4 @@
+REACT COLLAPSE MODEL
+
+1.) create most recently searched tickers on the page 
+2.)
