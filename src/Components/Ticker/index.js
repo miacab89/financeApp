@@ -1,49 +1,49 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Row, Container, Table} from 'react-bootstrap'; 
-import Intraday from '../../API/alphaAPI';
-import AlphaAPI from '../../API/alphaAPI';
+// import Intraday from '../../API/alphaAPI';
+// import AlphaAPI from '../../API/alphaAPI';
 import './style.css';
 
 
 const Ticker = () => {
-    useEffect(() => {
-        const fetch = async () => {
-        const { success, result } = await AlphaAPI.getAll("IBM")
-        console.log(`success: ${success}`);
-        console.log(result);
-        console.log(Intraday)
-        };
-        fetch();
-    }, []);
+    // useEffect(() => {
+    //     const fetch = async () => {
+    //     const { success, result } = await AlphaAPI.getAll("IBM")
+    //     console.log(`success: ${success}`);
+    //     console.log(result);
+    //     console.log(Intraday)
+    //     };
+    //     fetch();
+    // }, []);
 
-// const [data, setData] = useState([]);
-// const [stocks, setStocks] = useState([]);
+const [data, setData] = useState([]);
+const [stocks, setStocks] = useState([]);
 
-// const api = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=IBM&apikey=demo';
+const api = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=IBM&apikey=demo';
 
-// async function getData() {
-//     const stockData = await fetch(`${api}`)
-//         .then(res => res.json())
-//         setStocks(stockData)
-//         console.log(stockData)  
-//     };
+async function getData() {
+    const stockData = await fetch(`${api}`)
+        .then(res => res.json())
+        setStocks(stockData)
+        console.log(stockData)   
+    
+    };
 
-// useEffect(() => {
-//     getData(); 
-// }); 
 
-// let dailyAdj = JSON.stringify(stocks); 
- 
+useEffect(() => {
+    getData(); 
+}); 
+
+const dailyAdj = JSON.stringify(stocks); 
+
 
 return(
         <div className="ticker">
         <Container fluid>
             <Row>
-                <h1 className="company-name">
-                   {/* {dailyAdj} */}
+                <h1 className="company-data">
+                   <h8>{dailyAdj}</h8>
                 </h1>
-                <div className="stock-data">
-                </div>
                 <Table striped bordered hover size="sm">
                 <thead>
                     <tr>
