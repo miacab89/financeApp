@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { Row, Container, Table} from 'react-bootstrap'; 
-// import Intraday from '../../API/alphaAPI';
-// import AlphaAPI from '../../API/alphaAPI';
+import { Card, Button, Accordion } from 'react-bootstrap'; 
 import './style.css';
 
 
 const Ticker = () => {
-    // useEffect(() => {
-    //     const fetch = async () => {
-    //     const { success, result } = await AlphaAPI.getAll("IBM")
-    //     console.log(`success: ${success}`);
-    //     console.log(result);
-    //     console.log(Intraday)
-    //     };
-    //     fetch();
-    // }, []);
-
+ 
 const [data, setData] = useState([]);
 const [stocks, setStocks] = useState([]);
+const [activeId, setActiveId] = useState('0');
+
+function toggleActive(id) {
+  if (activeId === id) {
+    setActiveId(null);
+  } else {
+    setActiveId(id);
+  }
+}
 
 const api = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=IBM&apikey=demo';
 
@@ -26,9 +24,7 @@ async function getData() {
         .then(res => res.json())
         setStocks(stockData)
         console.log(stockData)   
-    
     };
-
 
 useEffect(() => {
     getData(); 
@@ -36,33 +32,39 @@ useEffect(() => {
 
 const dailyAdj = JSON.stringify(stocks); 
 
+function handleOnClick(event) {
+    console.log('onClick', event);
+  };
 
 return(
         <div className="ticker">
-        <Container fluid>
-            <Row>
-                <h1 className="company-data">
-                   <h8>{dailyAdj}</h8>
-                </h1>
-                <Table striped bordered hover size="sm">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Open</th>
-                        <th>Close</th>
-                        <th>High</th>
-                        <th>Low</th>
-                        <th>Volume</th>
-                        <th>Adjusted Close</th>
-                        <th>Dividend Amount</th>
-                    </tr>
-                </thead> 
-                    <tbody>
-                    <td></td>
-                    </tbody>
-                </Table>
-            </Row>
-        </Container>
+            <Accordion defaultActiveKey="1">
+
+<div className="panel-wrap">
+  <div className="panel-header">
+    <Accordion.Toggle onClick={handleOnClick} className="panel-toggle" variant="link" eventKey="0">
+      IBM
+    </Accordion.Toggle>
+  </div>
+
+  <Accordion.Collapse eventKey="0">
+    <div className="panel-body">{dailyAdj}</div>
+  </Accordion.Collapse>
+</div>
+
+<div className="panel-wrap">
+  <div className="panel-header">
+    <Accordion.Toggle onClick={handleOnClick} className="panel-toggle" variant="link" eventKey="1">
+      Panel 2
+    </Accordion.Toggle>
+  </div>
+
+  <Accordion.Collapse eventKey="1">
+    <div className="panel-body">Body content for panel 2</div>
+  </Accordion.Collapse>
+</div>
+
+</Accordion>    
       </div>
     )
 }
