@@ -3,6 +3,7 @@ import Ticker from './Components/Ticker/index.js';
 import Graph from './Components/Graph/index.js';
 import Trident from './trident.png';
 import Footer from './Components/Footer/index.js';
+import Search from './Components/Search/index.js';
 import './App.css'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -12,6 +13,9 @@ export default function App() {
     <div>
       <img src={Trident} className="tridentlogo" alt="tridentlogo" />
       <center><h1>Trident Stock Trading App</h1></center>
+      <div className="search-container">
+        <Search />
+      </div> 
       <div className="ticker-container">
         <Ticker />
       </div> 
