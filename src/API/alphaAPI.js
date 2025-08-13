@@ -7,7 +7,7 @@ const beforeIntradayHook = ({ payload, next }) => {
   payload.query = {
     ...payload.query,
     function: "TIME_SERIES_DAILY",
-    api: "ZTSFBVVYM4CQ0YG6"
+    api: process.env.ALPHA_VANTAGE_API_KEY
   }
   console.log(payload);
   next(payload);
